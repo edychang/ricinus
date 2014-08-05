@@ -1,4 +1,4 @@
-ricinus
+Ricinus
 =======
 
 a platform independent Digital Signage client
@@ -15,7 +15,7 @@ Who?
 ====
 目前来看只有我一个人来做这个项目，未来可能会有一两个小伙伴加入进来。在中国搞FOSS是寂寞的，而且需要奉献精神。我和小伙伴们都有自己的工作，只能利用业余时间来做。
 
-why?
+Why?
 ====
 有两个原因吧。
 
