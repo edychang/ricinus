@@ -1,7 +1,6 @@
 Ricinus
 =======
-
-a platform independent Digital Signage client
+## A platform independent Digital Signage client
 
 Please check out the [wiki](https://github.com/edychang/ricinus/wiki) page for details.
 
