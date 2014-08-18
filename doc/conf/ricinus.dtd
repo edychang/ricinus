@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Authors: Edward Zhang. -->
+<!-- Version: 1.0 -->
+
+<!ELEMENT ricinus:program (media+)>
+<!ATTLIST ricinus:program
+  width             CDATA               #REQUIRED
+  height            CDATA               #REQUIRED
+  auto-stretch      (true|false)        "true"
+>
+
+<!ELEMENT media (geometry, plugin, param*)>
+<!ATTLIST media
+  id                CDATA               #REQUIRED
+>
+
+<!ELEMENT geometry EMPTY>
+<!ATTLIST geometry
+  x                 CDATA               #REQUIRED
+  y                 CDATA               #REQUIRED
+  z                 CDATA               #REQUIRED
+  width             CDATA               #REQUIRED
+  height            CDATA               #REQUIRED
+>
+
+<!ELEMENT plugin EMPTY>
+<!ATTLIST plugin
+  name              CDATA               #REQUIRED
+>
+
+<!ELEMENT param EMPTY>
+<!ATTLIST param
+  name              CDATA               #REQUIRED
+  value             CDATA               #REQUIRED
+>

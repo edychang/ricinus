@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ricinus:program SYSTEM "ricinus.dtd">
+
+<ricinus:program width="800" height="600" auto-stretch="true">
+    <media id="1">
+        <geometry x="0" y="0" z="0" width="800" height="600" />
+        <plugin name="video" />
+        <param name="files" value="sample.avi" />
+        <param name="auto-repeat" value="true" />
+    </media>
+</program>
