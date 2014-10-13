@@ -1,3 +1,7 @@
 
 # ignore QT project user file
 src/ricinus.pro.user
+
+# ignore QT build temporary files
+build-ricinus-*-Debug/
+build-ricinus-*-Release/
