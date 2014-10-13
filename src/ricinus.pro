@@ -17,6 +17,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     define.h \
-    program/program.h
+    program/program.h \
+    program/program_manager.h
 
 FORMS    += mainwindow.ui
