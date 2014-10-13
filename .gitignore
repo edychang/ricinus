@@ -1,0 +1,3 @@
+
+# ignore QT project user file
+src/ricinus.pro.user
