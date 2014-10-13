@@ -5,3 +5,6 @@ src/ricinus.pro.user
 # ignore QT build temporary files
 build-ricinus-*-Debug/
 build-ricinus-*-Release/
+
+# ignore Doxygen generated HTML files
+doc/doxygen/html/

@@ -24,13 +24,15 @@ RICINUS_NAMESPACE_BEGIN
 
 /**
  * @brief 节目播放管理类.
+ *
  * 节目播放管理的统一接口,其他模块通过调用本类实现对节目的管理.
  * @see program
  */
 class program_manager {
 public:
+    ~program_manager() {} // triky, huh?
     /**
-     * @brief install 安装节目.
+     * @brief 安装节目.
      * @param path 节目包文件的本地磁盘全路径.
      * @note 节目包文件为打包的单个文件.
      * @note 调用本函数前，要求节目文件已经被下载/拷贝到本地磁盘.
@@ -38,21 +40,20 @@ public:
      */
     virtual int install(const std::string& path) const = 0;
     /**
-     * @brief uninstall 卸载节目.
-     * 将已经安装到本地的节目卸载(如果已经安装了的话).
+     * @brief 卸载节目.
      * @param id 待卸载的节目唯一标示符.
      * @return 节目卸载结果码.
      */
     virtual int uninstall(const std::string& id) const = 0;
     /**
-     * @brief play 播放节目.
+     * @brief 播放节目.
      * @note 因为屏幕只有一个,所以当前播放的节目应该也只有一个.
      * @param id 待播放的节目唯一标示符.
      * @return 节目播放节目码.
      */
     virtual int play(const std::string& id) const = 0;
     /**
-     * @brief stop 停止播放当前节目.
+     * @brief 停止播放当前节目.
      * @return 停止播放节目返回代码.
      */
     virtual int stop() const = 0;

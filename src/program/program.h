@@ -27,6 +27,7 @@ RICINUS_NAMESPACE_BEGIN
 
 /**
  * @brief 媒体布局类.
+ *
  * 描述媒体素材在屏幕上如何显示和排布.
  */
 struct geometry {
@@ -38,6 +39,7 @@ struct geometry {
     UINT_16 height;     ///< 高度
     /**
      * @brief z 垂直方向显示次序.
+     *
      * (在多个media存在交叠时)垂直方向显示次序,数值越大越靠前显示.
      * @note z值相同时,按照media在program中的添加次序显示,后添加的覆盖前面的.
      */
@@ -46,6 +48,7 @@ struct geometry {
 
 /**
  * @brief 媒体素材类.
+ *
  * 每个素材定义了布局,类型,播放参数等信息.
  * @see geometry
  */
@@ -71,6 +74,7 @@ struct media {
 
 /**
  * @brief 节目播放排程类.
+ *
  * cron格式的播放排程定义,详见:http://en.wikipedia.org/wiki/Cron.
  * @todo 该类可能被移到其它文件中,因为该类也能被计划任务模块组所使用.
  */
@@ -79,7 +83,8 @@ struct schedule {
 };
 
 /**
- * @brief 节目类
+ * @brief 节目类.
+ *
  * Ricinus以节目为单位播放多媒体信息，一个节目可以包含多个素材.
  * @see media,schedule
  */
@@ -88,9 +93,14 @@ struct program {
     schedule sch;               ///< 节目播放排程
     /**
      * @brief 节目播放优先级.
+     *
      * 在一次调度轮询中，队列中优先级更高的节目会优先被播放.
      */
     UINT_32 priority;
+    /**
+     * @brief 节目的唯一标识符.
+     */
+    std::string id;
 };
 
 RICINUS_NAMESPACE_END
