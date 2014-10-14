@@ -23,9 +23,9 @@
 RICINUS_NAMESPACE_BEGIN
 
 /**
- * @brief 节目播放管理类.
+ * @brief 节目管理类.
  *
- * 节目播放管理的统一接口,其他模块通过调用本类实现对节目的管理.
+ * 节目管理的统一接口,其他模块通过调用本类实现对节目的管理.
  * @see program
  */
 class program_manager {

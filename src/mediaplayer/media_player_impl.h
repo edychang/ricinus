@@ -23,6 +23,9 @@
 
 RICINUS_NAMESPACE_BEGIN
 
+/**
+ * @brief 基于QT4的节目舞台具体实现类.
+ */
 class scene_impl : public scene {
 public:
     scene_impl() : is_playing(false) {}
