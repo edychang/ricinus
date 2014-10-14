@@ -24,13 +24,16 @@
 RICINUS_NAMESPACE_BEGIN
 
 /**
- * @brief 媒体播放类接口.
+ * @brief 媒体播放控件类接口.
  *
- * 每个媒体类型都有对应的媒体播放器，比如视屏、图片和时钟等。具体的媒体播放器类继承该接口。
+ * 每个媒体类型都有专门对应的媒体播放控件，比如视屏播放控件、图片播放控件和时钟控件等。
+ * 具体的媒体播放控件类继承该接口。
+ * @note 如果说媒体播放控件是一个演员，那么舞台类就是演出的总指挥。
+ * 舞台类手上有所有演员的列表，把各个演员的任务安排下去，等到节目开始的时候，各个演员各司其职。
  */
-class media_player {
+class media_player_widget {
 public:
-    virtual ~media_player() {}
+    virtual ~media_player_widget() {}
     /**
      * @brief 开始播放.
      */
