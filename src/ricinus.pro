@@ -22,6 +22,7 @@ HEADERS  += mainwindow.h \
     mediaplayer/media_player.h \
     mediaplayer/player_manager.h \
     task/task.h \
-    task/task_manager.h
+    task/task_manager.h \
+    system/sys_manager.h
 
 FORMS    += mainwindow.ui
