@@ -30,7 +30,7 @@ RICINUS_NAMESPACE_BEGIN
  */
 class program_manager {
 public:
-    ~program_manager() {} // triky, huh?
+    virtual ~program_manager() {}
     /**
      * @brief 安装节目.
      * @param path 节目包文件的本地磁盘全路径.

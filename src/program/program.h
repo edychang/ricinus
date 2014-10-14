@@ -18,6 +18,7 @@
 #define __RICINUS_PROGRAM_H__
 
 #include "define.h"
+#include "task/task.h"
 
 #include <map>
 #include <vector>
@@ -70,16 +71,6 @@ struct media {
 
     typedef std::map<std::string, std::string> properties;
     properties params;  ///< 媒体素材具体参数
-};
-
-/**
- * @brief 节目播放排程类.
- *
- * cron格式的播放排程定义,详见:http://en.wikipedia.org/wiki/Cron.
- * @todo 该类可能被移到其它文件中,因为该类也能被计划任务模块组所使用.
- */
-struct schedule {
-    std::string cron;
 };
 
 /**

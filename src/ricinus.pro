@@ -18,6 +18,10 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     define.h \
     program/program.h \
-    program/program_manager.h
+    program/program_manager.h \
+    mediaplayer/media_player.h \
+    mediaplayer/player_manager.h \
+    task/task.h \
+    task/task_manager.h
 
 FORMS    += mainwindow.ui
