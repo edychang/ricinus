@@ -24,6 +24,42 @@
 RICINUS_NAMESPACE_BEGIN
 
 /**
+ * @brief 媒体播放类接口.
+ *
+ * 每个媒体类型都有对应的媒体播放器，比如视屏、图片和时钟等。具体的媒体播放器类继承该接口。
+ */
+class media_player {
+public:
+    virtual ~media_player() {}
+    /**
+     * @brief 开始播放.
+     */
+    virtual void play() = 0;
+    /**
+     * @brief 暂停播放.
+     *
+     * 考虑到插播节目的情形,如果有一个更高优先级的节目需要播放,则需要
+     * 暂停播放当前节目,保存当前播放状态,以便后面继续播放.
+     */
+    virtual void pause() = 0;
+    /**
+     * @brief 继续播放之前暂停播放的节目.
+     */
+    virtual void resume() = 0;
+    /**
+     * @brief 停止播放节目.
+     */
+    virtual void stop() = 0;
+    /**
+     * @brief 获取图形化控件.
+     * @return 图形化控件指针.
+     * @note 不同的图形库，指针的类型不一样，所以此处用void*作为指针类型。
+     * 在实际的实现类中，将其强制转换成各图形库对应的类接口。
+     */
+    virtual void* get_widget() = 0;
+};
+
+/**
  * @brief 节目播放舞台类.
  *
  * 节目播放的GUI容器,存储并显示具体的播放GUI控件.
