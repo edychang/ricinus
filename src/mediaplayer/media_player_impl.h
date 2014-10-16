@@ -21,6 +21,7 @@
 #include "program/program_manager.h"
 
 #include <vector>
+#include <QWidget>
 
 RICINUS_NAMESPACE_BEGIN
 
@@ -53,7 +54,9 @@ public:
  */
 class scene_impl : public scene {
 public:
-    ~scene_impl();
+    scene_impl(QWidget* parent = 0) ///< 构造函数
+        : m_container(new QWidget(parent)) {}
+    ~scene_impl();                  ///< 析构函数
 
     void setup(const std::string &m_pid);
     void cleanup();
@@ -74,6 +77,7 @@ private:
     std::vector<media_player_widget*> m_widgets;
     std::string m_pid;        ///< 当前准备播放或者正在播放的节目标示符
     program_manager* m_pmgr;  ///< 节目管理类实现实例
+    QWidget* m_container;     ///< 媒体播放控件容器
 };
 
 RICINUS_NAMESPACE_END

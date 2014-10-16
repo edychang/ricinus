@@ -91,7 +91,6 @@ void scene_impl::stop() {
     m_state = STOPPED;
 }
 
-void* scene_impl::get_container() const {
-    // TODO
-    return NULL;
+void *scene_impl::get_container() const {
+    return m_container;
 }
