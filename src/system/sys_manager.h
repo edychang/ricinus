@@ -40,6 +40,9 @@ public:
      */
     virtual void turn_on_monitor() const = 0;
 
+    /**
+     * @brief 自定义分辨率数据结构.
+     */
     typedef std::pair<UINT_16, UINT_16> resolution;
     /**
      * @brief 获取屏幕分辨率.

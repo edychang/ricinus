@@ -69,6 +69,9 @@ struct media {
     media_type type;    ///< 媒体素材类型值
     geometry geo;       ///< 媒体素材布局定义
 
+    /**
+     * @brief 自定义参数列表对象.
+     */
     typedef std::map<std::string, std::string> properties;
     properties params;  ///< 媒体素材具体参数
 };

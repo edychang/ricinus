@@ -34,7 +34,7 @@ RICINUS_NAMESPACE_BEGIN
  */
 class media_player_widget {
 public:
-    media_player_widget(const media& m) : me(m) {}
+    media_player_widget(const media& m) : me(m) {}  ///< 构造函数
     virtual ~media_player_widget() {}
 
     /**
@@ -73,7 +73,7 @@ protected:
  */
 class video_widget : public media_player_widget {
 public:
-    video_widget(const media& m) : media_player_widget(m) {}
+    video_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -87,7 +87,7 @@ public:
  */
 class image_widget : public media_player_widget {
 public:
-    image_widget(const media& m) : media_player_widget(m) {}
+    image_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -101,7 +101,7 @@ public:
  */
 class subtitle_widget : public media_player_widget {
 public:
-    subtitle_widget(const media& m) : media_player_widget(m) {}
+    subtitle_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -115,7 +115,7 @@ public:
  */
 class clock_widget : public media_player_widget {
 public:
-    clock_widget(const media& m) : media_player_widget(m) {}
+    clock_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
