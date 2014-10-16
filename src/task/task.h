@@ -1,4 +1,4 @@
-//Ricinus, platform independent Digital Signage Player
+﻿//Ricinus, platform independent Digital Signage Player
 //Copyright (C) 2014 Edward Zhang
 
 //This program is free software: you can redistribute it and/or modify

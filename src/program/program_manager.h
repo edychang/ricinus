@@ -1,4 +1,4 @@
-//Ricinus, platform independent Digital Signage Player
+﻿//Ricinus, platform independent Digital Signage Player
 //Copyright (C) 2014 Edward Zhang
 
 //This program is free software: you can redistribute it and/or modify
@@ -57,6 +57,18 @@ public:
      * @return 停止播放节目返回代码.
      */
     virtual int stop() const = 0;
+    /**
+     * @brief 获取节目类对象的一份拷贝.
+     * @param id 节目唯一标识符.
+     * @return 系统中符合标识符的节目对象的拷贝.
+     */
+    virtual program get_program(const std::string& id) const;
+    /**
+     * @brief 查询指定标识符的节目是否已经被安装.
+     * @param id 节目唯一标识符.
+     * @return 已经安装返回true，否则返回false。
+     */
+    virtual bool program_installed(const std::string& id) const;
 };
 
 RICINUS_NAMESPACE_END

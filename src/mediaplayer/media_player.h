@@ -18,6 +18,7 @@
 #define __RICINUS_MEDIA_PLAYER_H__
 
 #include "define.h"
+#include "program/program.h"
 
 #include <string>
 
@@ -33,7 +34,9 @@ RICINUS_NAMESPACE_BEGIN
  */
 class media_player_widget {
 public:
+    media_player_widget(const media& m) : me(m) {}
     virtual ~media_player_widget() {}
+
     /**
      * @brief 开始播放.
      */
@@ -60,6 +63,64 @@ public:
      * 在实际的实现类中，将其强制转换成各图形库对应的类接口。
      */
     virtual void* get_widget() = 0;
+protected:
+    media me;   ///< 播放控件中存储一份媒体描述实例的拷贝
+};
+
+/**
+ * @brief 视频播放控件类.
+ * @todo 留待实现.
+ */
+class video_widget : public media_player_widget {
+public:
+    video_widget(const media& m) : media_player_widget(m) {}
+    void play() {}
+    void pause() {}
+    void resume() {}
+    void stop() {}
+    void* get_widget() { return NULL; }
+};
+
+/**
+ * @brief 图片播放控件类.
+ * @todo 留待实现.
+ */
+class image_widget : public media_player_widget {
+public:
+    image_widget(const media& m) : media_player_widget(m) {}
+    void play() {}
+    void pause() {}
+    void resume() {}
+    void stop() {}
+    void* get_widget() { return NULL; }
+};
+
+/**
+ * @brief 字幕播放控件类.
+ * @todo 留待实现.
+ */
+class subtitle_widget : public media_player_widget {
+public:
+    subtitle_widget(const media& m) : media_player_widget(m) {}
+    void play() {}
+    void pause() {}
+    void resume() {}
+    void stop() {}
+    void* get_widget() { return NULL; }
+};
+
+/**
+ * @brief 时钟控件类.
+ * @todo 留待实现.
+ */
+class clock_widget : public media_player_widget {
+public:
+    clock_widget(const media& m) : media_player_widget(m) {}
+    void play() {}
+    void pause() {}
+    void resume() {}
+    void stop() {}
+    void* get_widget() { return NULL; }
 };
 
 /**
@@ -71,7 +132,8 @@ public:
  */
 class scene {
 public:
-    virtual ~scene() {}
+    scene() : state(IDLE) {}    ///< 构造函数
+    virtual ~scene() {}         ///< 析构函数
     /**
      * @brief 布置舞台.
      * @note 一个舞台同时只能播放一个节目,需要在真正播放节目前调用.
@@ -95,11 +157,6 @@ public:
      */
     virtual void play() = 0;
     /**
-     * @brief 当前是否正在播放节目.
-     * @return 正在播放返回true,反之false.
-     */
-    virtual bool playing() const = 0;
-    /**
      * @brief 暂停播放.
      *
      * 考虑到插播节目的情形,如果有一个更高优先级的节目需要播放,则需要
@@ -114,6 +171,25 @@ public:
      * @brief 停止播放节目.
      */
     virtual void stop() = 0;
+    /**
+     * @brief 代表舞台的各个状态的枚举变量.
+     */
+    enum play_state {
+        IDLE = 0,   ///< 舞台空
+        READY,      ///< 舞台准备就绪
+        PLAYING,    ///< 正在演出
+        PAUSED,     ///< 演出暂停
+        STOPPED     ///< 演出结束
+    };
+    /**
+     * @brief 获取当前舞台状态.
+     * @return 当前舞台状态值.
+     * @see play_state
+     */
+    inline play_state get_state() const { return state; }
+
+protected:
+    play_state state;   ///< 当前舞台状态
 };
 
 RICINUS_NAMESPACE_END
