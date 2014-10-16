@@ -43,13 +43,13 @@ public:
     /**
      * @brief 自定义分辨率数据结构.
      */
-    typedef std::pair<UINT_16, UINT_16> resolution;
+    typedef std::pair<uint16_t, uint16_t> resolution_t;
     /**
      * @brief 获取屏幕分辨率.
      * @return 屏幕分辨率.
      * @see resolution
      */
-    virtual resolution get_resolution() const = 0;
+    virtual resolution_t get_resolution() const = 0;
 };
 
 RICINUS_NAMESPACE_END

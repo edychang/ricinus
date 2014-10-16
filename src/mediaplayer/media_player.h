@@ -34,7 +34,7 @@ RICINUS_NAMESPACE_BEGIN
  */
 class media_player_widget {
 public:
-    media_player_widget(const media& m) : me(m) {}  ///< 构造函数
+    media_player_widget(const media_t& m) : m_media(m) {}  ///< 构造函数
     virtual ~media_player_widget() {}
 
     /**
@@ -64,7 +64,7 @@ public:
      */
     virtual void* get_widget() = 0;
 protected:
-    media me;   ///< 播放控件中存储一份媒体描述实例的拷贝
+    media_t m_media;   ///< 播放控件中存储一份媒体描述实例的拷贝
 };
 
 /**
@@ -73,7 +73,7 @@ protected:
  */
 class video_widget : public media_player_widget {
 public:
-    video_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
+    video_widget(const media_t& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -87,7 +87,7 @@ public:
  */
 class image_widget : public media_player_widget {
 public:
-    image_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
+    image_widget(const media_t& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -101,7 +101,7 @@ public:
  */
 class subtitle_widget : public media_player_widget {
 public:
-    subtitle_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
+    subtitle_widget(const media_t& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -115,7 +115,7 @@ public:
  */
 class clock_widget : public media_player_widget {
 public:
-    clock_widget(const media& m) : media_player_widget(m) {}  ///< 构造函数
+    clock_widget(const media_t& m) : media_player_widget(m) {}  ///< 构造函数
     void play() {}
     void pause() {}
     void resume() {}
@@ -132,7 +132,7 @@ public:
  */
 class scene {
 public:
-    scene() : state(IDLE) {}    ///< 构造函数
+    scene() : m_state(IDLE) {}    ///< 构造函数
     virtual ~scene() {}         ///< 析构函数
     /**
      * @brief 布置舞台.
@@ -174,7 +174,7 @@ public:
     /**
      * @brief 代表舞台的各个状态的枚举变量.
      */
-    enum play_state {
+    enum play_state_t {
         IDLE = 0,   ///< 舞台空
         READY,      ///< 舞台准备就绪
         PLAYING,    ///< 正在演出
@@ -186,10 +186,17 @@ public:
      * @return 当前舞台状态值.
      * @see play_state
      */
-    inline play_state get_state() const { return state; }
+    inline play_state_t get_state() const { return m_state; }
+    /**
+     * @brief 获取图形化控件容器.
+     *
+     * 容器中布置所有的媒体播放控件对象，在不同的图形库中有不同的实现类型。
+     * @return 图形化控件容器指针.
+     */
+    virtual void* get_container() const = 0;
 
 protected:
-    play_state state;   ///< 当前舞台状态
+    play_state_t m_state;   ///< 当前舞台状态
 };
 
 RICINUS_NAMESPACE_END

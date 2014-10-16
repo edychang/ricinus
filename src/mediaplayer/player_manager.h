@@ -31,14 +31,7 @@ RICINUS_NAMESPACE_BEGIN
 class player_manager {
 public:
     /**
-     * @brief 空闲舞台.
-     *
-     * 当现在没有节目播放的时候，显示给观众看的东西。
-     * @note 空闲舞台的内容是不经常变动的，往往在程序初始化的时候设置好。
-     */
-    scene idle_scene;
-    /**
-     * @brief 真正的播放节目的舞台.
+     * @brief 播放节目的舞台.
      *
      * 默认所有的节目都在这个舞台上播放。真是忙啊，当然，如果一直没节目就另当别论了。
      */

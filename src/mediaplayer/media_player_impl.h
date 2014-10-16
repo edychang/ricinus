@@ -27,9 +27,9 @@ RICINUS_NAMESPACE_BEGIN
 /**
  * @brief 不能识别的媒体描述类异常.
  */
-struct unrecognized_media {
-    unrecognized_media(const media& m) : me(m) {} ///< 构造函数
-    media me;   ///< 媒体描述类对象
+struct err_unrecognized_media {
+    err_unrecognized_media(const media_t& m) : media(m) {} ///< 构造函数
+    media_t media;   ///< 媒体描述类对象
 };
 
 /**
@@ -43,9 +43,9 @@ public:
      * @brief 创建媒体播放控件对象.
      * @param m 媒体描述类.
      * @return 媒体播放控件对象.
-     * @throw unrecognized_media
+     * @throw err_unrecognized_media
      */
-    static media_player_widget* create(const media& m);
+    static media_player_widget* create(const media_t& m);
 };
 
 /**
@@ -55,14 +55,15 @@ class scene_impl : public scene {
 public:
     ~scene_impl();
 
-    void setup(const std::string &pid);
+    void setup(const std::string &m_pid);
     void cleanup();
-    bool prepared(std::string &pid) const;
+    bool prepared(std::string &m_pid) const;
 
     void play();
     void pause();
     void resume();
     void stop();
+    void* get_container() const;
 
 private:
     /**
@@ -70,9 +71,9 @@ private:
      *
      * @note 一份所有演职员名单。
      */
-    std::vector<media_player_widget*> widgets;
-    std::string pid;        ///< 当前准备播放或者正在播放的节目标示符
-    program_manager* pmgr;  ///< 节目管理类实现实例
+    std::vector<media_player_widget*> m_widgets;
+    std::string m_pid;        ///< 当前准备播放或者正在播放的节目标示符
+    program_manager* m_pmgr;  ///< 节目管理类实现实例
 };
 
 RICINUS_NAMESPACE_END

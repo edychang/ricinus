@@ -27,7 +27,7 @@ RICINUS_NAMESPACE_BEGIN
 /**
  * @brief 排程类.
  */
-struct schedule {
+struct schedule_t {
     /**
      * @brief cron格式的排程定义.
      * @note 格式详见:http://en.wikipedia.org/wiki/Cron.
@@ -39,15 +39,8 @@ struct schedule {
 /**
  * @brief 计划任务类.
  */
-class task {
-public:
-    /**
-     * @brief 显示计划任务.
-     * @return 计划任务的字符串表示形式.
-     */
-    virtual std::string to_string() const = 0;
-
-    schedule sch;                       ///< 任务计划排程.
+struct task_t {
+    schedule_t schedule;                       ///< 任务计划排程.
     /**
      * @brief 具体执行操作.
      * @todo 应该是类似于函数指针之类的对象。。。吧。。。

@@ -36,7 +36,7 @@ public:
      * @note 一旦添加，计划任务将被加入调度队列；一旦时间条件满足，定义任务将被执行。
      * @return 整型格式的任务唯一标示符.
      */
-    virtual int add_task(const task& t) = 0;
+    virtual int add_task(const task_t& t) = 0;
     /**
      * @brief 取消任务.
      * @param id 待取消的任务唯一标示符.

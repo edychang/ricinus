@@ -18,18 +18,18 @@
 
 RICINUS_NAMESPACE_USE;
 
-media_player_widget* media_player_widget_factory::create(const media &m) {
+media_player_widget* media_player_widget_factory::create(const media_t &m) {
     switch (m.type) {
-    case media::VIDEO:
+    case media_t::VIDEO:
         return new video_widget(m);
-    case media::IMAGE:
+    case media_t::IMAGE:
         return new image_widget(m);
-    case media::SUBTITLE:
+    case media_t::SUBTITLE:
         return new subtitle_widget(m);
-    case media::CLOCK:
+    case media_t::CLOCK:
         return new clock_widget(m);
     default:
-        throw unrecognized_media(m);
+        throw err_unrecognized_media(m);
     };
 }
 
@@ -38,55 +38,60 @@ scene_impl::~scene_impl() {
 }
 
 void scene_impl::setup(const std::string &pid) {
-    program prog = pmgr->get_program(pid);
+    program_t prog = m_pmgr->get_program(pid);
     for(size_t i = 0, n = prog.medias.size(); i < n; ++i) {
         media_player_widget* widget =
                 media_player_widget_factory::create(prog.medias[i]);
         // exception shall thrown if media not recognizable
-        widgets.push_back(widget);
+        m_widgets.push_back(widget);
     }
-    this->pid = pid;
-    state = READY;
+    this->m_pid = pid;
+    m_state = READY;
 }
 
 void scene_impl::cleanup() {
     // Everyone leave! We are closing!
-    if ((state == PLAYING) || (state = PAUSED)) stop();
-    for(size_t i = 0, n = widgets.size(); i < n; ++i) {
-        delete widgets.at(i);
+    if ((m_state == PLAYING) || (m_state = PAUSED)) stop();
+    for(size_t i = 0, n = m_widgets.size(); i < n; ++i) {
+        delete m_widgets.at(i);
     }
-    pid = ""; // this program is offline
-    state = IDLE;
+    m_pid = ""; // this program is offline
+    m_state = IDLE;
 }
 
 bool scene_impl::prepared(std::string& pid) const {
-    return (this->pid.compare(pid) == 0);
+    return (this->m_pid.compare(pid) == 0);
 }
 
 void scene_impl::play() {
-    for(size_t i = 0, n = widgets.size(); i < n; ++i) {
-        static_cast<media_player_widget*> (widgets[i])->play();
+    for(size_t i = 0, n = m_widgets.size(); i < n; ++i) {
+        static_cast<media_player_widget*> (m_widgets[i])->play();
     }
-    state = PLAYING;
+    m_state = PLAYING;
 }
 
 void scene_impl::pause() {
-    for(size_t i = 0, n = widgets.size(); i < n; ++i) {
-        static_cast<media_player_widget*> (widgets[i])->pause();
+    for(size_t i = 0, n = m_widgets.size(); i < n; ++i) {
+        static_cast<media_player_widget*> (m_widgets[i])->pause();
     }
-    state = PAUSED;
+    m_state = PAUSED;
 }
 
 void scene_impl::resume() {
-    for(size_t i = 0, n = widgets.size(); i < n; ++i) {
-        static_cast<media_player_widget*> (widgets[i])->resume();
+    for(size_t i = 0, n = m_widgets.size(); i < n; ++i) {
+        static_cast<media_player_widget*> (m_widgets[i])->resume();
     }
-    state = PLAYING;
+    m_state = PLAYING;
 }
 
 void scene_impl::stop() {
-    for(size_t i = 0, n = widgets.size(); i < n; ++i) {
-        static_cast<media_player_widget*> (widgets[i])->stop();
+    for(size_t i = 0, n = m_widgets.size(); i < n; ++i) {
+        static_cast<media_player_widget*> (m_widgets[i])->stop();
     }
-    state = STOPPED;
+    m_state = STOPPED;
+}
+
+void* scene_impl::get_container() const {
+    // TODO
+    return NULL;
 }
