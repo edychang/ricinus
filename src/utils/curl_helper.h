@@ -40,6 +40,13 @@
 #define __RICINUS_CURL_HELPER_H__
 
 /**
+ * @brief 无法初始化libcurl.
+ *
+ * 作为CRULcode的补充，是curl_ftp_get可能的返回值之一。
+ */
+#define ERR_CURL_CANNOT_INIT -255
+
+/**
  * @brief 使用libcurl实现的ftp下载函数
  * @param url 下载ftp链接
  * @param tofile 下载到本地文件全路径

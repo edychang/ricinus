@@ -46,18 +46,20 @@ size_t my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream) {
 int curl_ftp_get(const char* url, const char* tofile) {
     curl_global_init(CURL_GLOBAL_DEFAULT);
     CURL* curl = curl_easy_init();
-    CURLcode res;
+    int res;
     ftp_file_t ftp_file(tofile, NULL);
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_fwrite);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &ftp_file);
         curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-        res = curl_easy_perform(curl);
+        res = (int) curl_easy_perform(curl);
         curl_easy_cleanup(curl);
+    } else {
+        res = ERR_CURL_CANNOT_INIT;
     }
     if (ftp_file.stream)
         fclose(ftp_file.stream);
     curl_global_cleanup();
-    return (int) res;
+    return res;
 }
