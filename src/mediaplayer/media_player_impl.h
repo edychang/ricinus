@@ -54,7 +54,11 @@ public:
  */
 class scene_impl : public scene {
 public:
-    scene_impl(QWidget* parent = 0) ///< 构造函数
+    /**
+     * @brief 构造函数
+     * @param parent 节目舞台图形化控件容器的父容器
+     */
+    scene_impl(QWidget* parent = 0)
         : m_container(new QWidget(parent)) {}
     ~scene_impl();                  ///< 析构函数
 

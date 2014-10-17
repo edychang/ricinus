@@ -9,3 +9,6 @@ build-ricinus-*-Release/
 # ignore Doxygen generated HTML files
 doc/doxygen/html/
 doc/doxygen/html.zip
+
+# ignore thirdparty libraries
+thirdparty/

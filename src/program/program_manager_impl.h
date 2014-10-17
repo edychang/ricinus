@@ -14,28 +14,30 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef __RICINUS_MAINWINDOW_H__
-#define __RICINUS_MAINWINDOW_H__
+#ifndef __RICINUS_PROGRAM_MANAGER_IMPL_H__
+#define __RICINUS_PROGRAM_MANAGER_IMPL_H__
 
-#include <QMainWindow>
+#include "program_manager.h"
 
-namespace Ui {
-class MainWindow;
-}
+RICINUS_NAMESPACE_BEGIN
 
 /**
- * @brief Ricinus播放器主窗口类.
+ * @brief 节目管理实现类
  */
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
-
+class program_manager_impl : public program_manager {
 public:
-    explicit MainWindow(QWidget *parent = 0); ///< 构造函数
-    ~MainWindow(); ///< 析构函数
+    void install(const program_t& program);
+    void uninstall(const std::string &id);
+    program_t get_program(const std::string& id) const;
+    bool program_installed(const std::string& id) const;
 
 private:
-    Ui::MainWindow *ui;
+    /**
+     * @brief 全局的已安装节目列表
+     */
+    std::map<std::string, program_t> m_programs;
 };
 
-#endif // __RICINUS_MAINWINDOW_H__
+RICINUS_NAMESPACE_END
+
+#endif // __RICINUS_PROGRAM_MANAGER_IMPL_H__

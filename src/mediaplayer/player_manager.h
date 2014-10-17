@@ -43,6 +43,18 @@ public:
      * 直到插播结束，继续播放正常的节目。
      */
     scene insert_play_scene;
+    /**
+     * @brief 播放节目.
+     * @note 因为屏幕只有一个,所以当前播放的节目应该也只有一个.
+     * @param id 待播放的节目唯一标示符.
+     * @return 节目播放节目码.
+     */
+    virtual int play(const std::string& id) const = 0;
+    /**
+     * @brief 停止播放当前节目.
+     * @return 停止播放节目返回代码.
+     */
+    virtual int stop() const = 0;
 };
 
 RICINUS_NAMESPACE_END

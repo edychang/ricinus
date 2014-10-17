@@ -14,7 +14,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mediaplayer/media_player_impl.cpp
+    mediaplayer/media_player_impl.cpp \
+    program/program_manager_impl.cpp
 
 HEADERS  += mainwindow.h \
     define.h \
@@ -25,6 +26,7 @@ HEADERS  += mainwindow.h \
     task/task.h \
     task/task_manager.h \
     system/sys_manager.h \
-    mediaplayer/media_player_impl.h
+    mediaplayer/media_player_impl.h \
+    program/program_manager_impl.h
 
 FORMS    += mainwindow.ui

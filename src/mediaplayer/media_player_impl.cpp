@@ -35,6 +35,9 @@ media_player_widget* media_player_widget_factory::create(const media_t &m) {
 
 scene_impl::~scene_impl() {
     cleanup();
+    // may not need to delete it because it can be cleaned up
+    // by parent de-constructor
+    //delete m_container;
 }
 
 void scene_impl::setup(const std::string &pid) {

@@ -23,6 +23,30 @@
 RICINUS_NAMESPACE_BEGIN
 
 /**
+ * @brief 节目标识符所对应的节目不存在错误.
+ */
+struct err_program_id_not_exist {
+    /**
+     * @brief 构造函数
+     * @param id_ 有问题的节目标识符
+     */
+    err_program_id_not_exist(const std::string& id_) : id(id_) {}
+    std::string id; ///< 节目标识符
+};
+
+/**
+ * @brief 指定节目标示符对应的节目已经被安装.
+ */
+struct err_program_already_exist {
+    /**
+     * @brief 构造函数
+     * @param id_ 有问题的节目标识符
+     */
+    err_program_already_exist(const std::string& id_) : id(id_) {}
+    std::string id; ///< 节目标识符
+};
+
+/**
  * @brief 节目管理类.
  *
  * 节目管理的统一接口,其他模块通过调用本类实现对节目的管理.
@@ -33,34 +57,24 @@ public:
     virtual ~program_manager() {}
     /**
      * @brief 安装节目.
-     * @param path 节目包文件的本地磁盘全路径.
+     * @param program 节目描述类实例.
      * @note 节目包文件为打包的单个文件.
      * @note 调用本函数前，要求节目文件已经被下载/拷贝到本地磁盘.
-     * @return 节目安装结果码.
+     * @see program_t
+     * @throw err_program_already_exist
      */
-    virtual int install(const std::string& path) const = 0;
+    virtual void install(const program_t& program) = 0;
     /**
      * @brief 卸载节目.
      * @param id 待卸载的节目唯一标示符.
-     * @return 节目卸载结果码.
      */
-    virtual int uninstall(const std::string& id) const = 0;
-    /**
-     * @brief 播放节目.
-     * @note 因为屏幕只有一个,所以当前播放的节目应该也只有一个.
-     * @param id 待播放的节目唯一标示符.
-     * @return 节目播放节目码.
-     */
-    virtual int play(const std::string& id) const = 0;
-    /**
-     * @brief 停止播放当前节目.
-     * @return 停止播放节目返回代码.
-     */
-    virtual int stop() const = 0;
+    virtual void uninstall(const std::string& id) = 0;
     /**
      * @brief 获取节目类对象的一份拷贝.
      * @param id 节目唯一标识符.
      * @return 系统中符合标识符的节目对象的拷贝.
+     * @throw err_program_id_not_exist
+     * @see program_t
      */
     virtual program_t get_program(const std::string& id) const = 0;
     /**
