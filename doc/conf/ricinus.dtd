@@ -4,14 +4,15 @@
 
 <!ELEMENT ricinus:program (media+)>
 <!ATTLIST ricinus:program
+  id                CDATA               #REQUIRED
   width             CDATA               #REQUIRED
   height            CDATA               #REQUIRED
   auto-stretch      (true|false)        "true"
 >
 
-<!ELEMENT media (geometry, plugin, param*)>
+<!ELEMENT media (geometry, param*)>
 <!ATTLIST media
-  id                CDATA               #REQUIRED
+  type              CDATA               #REQUIRED
 >
 
 <!ELEMENT geometry EMPTY>
@@ -21,11 +22,6 @@
   z                 CDATA               #REQUIRED
   width             CDATA               #REQUIRED
   height            CDATA               #REQUIRED
->
-
-<!ELEMENT plugin EMPTY>
-<!ATTLIST plugin
-  name              CDATA               #REQUIRED
 >
 
 <!ELEMENT param EMPTY>
