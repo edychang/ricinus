@@ -30,8 +30,9 @@ RICINUS_NAMESPACE_BEGIN
 struct schedule_t {
     /**
      * @brief cron格式的排程定义.
-     * @note 格式详见:http://en.wikipedia.org/wiki/Cron.
-     * 区别在于该类中没有执行动作的定义.
+     *
+     * 格式详见:<a href="http://en.wikipedia.org/wiki/Cron">Cron Wiki</a>。
+     * @note 本实现类中没有执行动作的定义.
      */
     std::string cron;
 };
